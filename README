@@ -1,0 +1,2 @@
+The objective of this extension is to provide an "instant search"-type UI
+to MSDN search, by using Greasemonkey, Jquery and AJAX.
