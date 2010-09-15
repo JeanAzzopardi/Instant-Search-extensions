@@ -1,2 +1,15 @@
-The objective of this extension is to provide an "instant search"-type UI
-to MSDN search, by using Greasemonkey, Jquery and AJAX.
+The objective of these extensions is to provide instant search functionality via a greasemonkey chrome extension.
+Installing the extensions should be done by following these steps:
+	1. Download the source folder from http://github.com/LordIllidan/Instant-Search-extensions/archives/master as ZIP.
+	2. Unzip the source folder 
+	3. Drag and drop the extension you want onto Chrome.
+
+To test out the plugins, check out these urls:
+	
+msdn-instant-search.user.js = http://social.msdn.microsoft.com/Search
+bing-instant-search.user.js = http://www.bing.com
+
+Please note that these plugins are still under development and may be buggy.
+
+Caching functionality has also been implemented in order to improve performance. The plugin is slow
+on MSDN due to the slower performance of the MSDN search engine.
