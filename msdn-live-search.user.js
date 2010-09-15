@@ -789,11 +789,13 @@ function Init() {
 
     searchBox.keyup(function (event) {
         query = searchBox.val();
-        textChanged = true;
+        if (query != "") {
+            textChanged = true;
 
-        if (event.keyCode == 32) {
-            textChanged = false;
-            PerformRequest();
+            if (event.keyCode == 32) {
+                textChanged = false;
+                PerformRequest();
+            }
         }
     });
 }
