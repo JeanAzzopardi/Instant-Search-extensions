@@ -771,10 +771,12 @@ function Init() {
     window.currentResult = '';
 
     window.searchBoxName = '#sb_form_q';
-    window.contentAreaName = '#results';
+    window.contentAreaName = '#sw_content';
 
     window.searchBox = $(searchBoxName);
     window.contentArea = $(contentAreaName);
+    
+    $(contentAreaName).css("clear","both");
 
     //Do the first query
     query = searchBox.val();
