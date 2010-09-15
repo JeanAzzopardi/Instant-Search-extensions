@@ -801,11 +801,7 @@ function Init() {
     });
 }
 
-var jQuery = document.createElement("script"),
-	inject = document.createElement("script");
-
-jQuery.setAttribute("type", "text/javascript");
-jQuery.setAttribute("src", "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js");
+var inject = document.createElement("script");
 
 inject.setAttribute("type", "text/javascript");
 inject.appendChild(document.createTextNode(loadJquery + "loadJquery(window);"));
@@ -814,5 +810,4 @@ inject.appendChild(document.createTextNode(PerformRequest));
 inject.appendChild(document.createTextNode(Levenshtein));
 inject.appendChild(document.createTextNode(Init + "Init();"));
 
-//document.body.appendChild(jQuery);
 document.body.appendChild(inject);
