@@ -720,9 +720,12 @@ function Levenshtein(str1, str2) {
 
 function PerformRequest() {
     if (!cachedQuery[query]) {
-        var msdnUrl = "http://www.bing.com/search?q=" + encodeURIComponent(searchBox.val());
+
+       
+        var searchUrl = urlDictionary[$(currentTab).html()] + encodeURIComponent(searchBox.val());
+
         x = $.ajax({
-            url: msdnUrl,
+            url: searchUrl,
 
 
             success: function (data) {
@@ -734,11 +737,8 @@ function PerformRequest() {
                                                 Levenshtein(window.currentResult, thisQuery))) {
                     window.currentResult = thisQuery;
                     var content = ($(data).find(contentAreaName).html());
-                    contentArea.html(content);
+                    contentArea.html(content);                  
                 }
-
-
-
                 cachedQuery[thisQuery] = content;
                 cachedKeys.enqueue(thisQuery);
 
@@ -754,6 +754,7 @@ function PerformRequest() {
     else {
         $(contentAreaName).html(cachedQuery[query]);
         lastQuery = query;
+        
     }
 }
 
@@ -770,27 +771,37 @@ function Init() {
     window.textChanged = false;
     window.currentResult = '';
 
+    window.currentTab = '.sw_aat';
+
+    window.urlDictionary = new Array();
+    window.urlDictionary["Web"] = "http://www.bing.com/search?q=";
+    window.urlDictionary["Images"] = "http://www.bing.com/images/search?q=";
+    window.urlDictionary["News"] = "http://www.bing.com/news/search?q=";
+    window.urlDictionary["Videos"] = "http://www.bing.com/videos/search?q=";
+
     window.searchBoxName = '#sb_form_q';
-    window.contentAreaName = '#sw_content';
+    window.contentAreaName = '#sw_canvas';
+    window.contentTabsName = '#sw_abar';
 
     window.searchBox = $(searchBoxName);
     window.contentArea = $(contentAreaName);
+    window.contentTabs = $(contentTabsName);
     
-    $(contentAreaName).css("clear","both");
-
     //Do the first query
-    query = searchBox.val();
-    PerformRequest();
+//    query = searchBox.val();
+//    PerformRequest();
 
     setInterval(function () {
         if (textChanged) {
             textChanged = false;
             PerformRequest();
+           
         }
     },
 	queryInterval);
 
     searchBox.keyup(function (event) {
+        
         query = searchBox.val();
         if (query != "") {
             textChanged = true;
