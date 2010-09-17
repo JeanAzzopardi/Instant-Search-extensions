@@ -721,8 +721,14 @@ function Levenshtein(str1, str2) {
 function PerformRequest() {
     if (!cachedQuery[query]) {
 
-       
-        var searchUrl = urlDictionary[$(currentTab).html()] + encodeURIComponent(searchBox.val());
+        if ($(currentTab).length != 0){
+		var searchUrl = urlDictionary[$(currentTab).html()] + encodeURIComponent(searchBox.val());
+	
+	}
+	else
+	{
+	    var searchUrl = urlDictionary["Web"] + encodeURIComponent(searchBox.val());
+}
 
         x = $.ajax({
             url: searchUrl,
@@ -774,6 +780,7 @@ function Init() {
     window.currentTab = '.sw_aat';
 
     window.urlDictionary = new Array();
+    window.urlDictionary[undefined] = "http://www.bing.com/search?q=";
     window.urlDictionary["Web"] = "http://www.bing.com/search?q=";
     window.urlDictionary["Images"] = "http://www.bing.com/images/search?q=";
     window.urlDictionary["News"] = "http://www.bing.com/news/search?q=";
@@ -802,10 +809,10 @@ function Init() {
 
     searchBox.keyup(function (event) {
         
-        query = searchBox.val();
-        if (query != "") {
+      
+        if (searchBox.val() != "" && searchBox.val() !=  " ") {
             textChanged = true;
-
+	      query = searchBox.val();
             if (event.keyCode == 32) {
                 textChanged = false;
                 PerformRequest();
