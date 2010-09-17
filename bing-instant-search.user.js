@@ -1022,6 +1022,9 @@ function Init()
     window.contentArea = $(contentAreaName);
     window.contentTabs = $(contentTabsName);
 
+    window.searchBox.focus();
+    var test = window.searchBox.val();
+    window.searchBox.val(test);
     //Do the first query
     //    query = searchBox.val();
     //    PerformRequest();
@@ -1047,8 +1050,7 @@ function Init()
     }
     else searchBox.keyup(function (event)
     {
-
-        alert('test fbing');
+        
         if (searchBox.val() != "" && searchBox.val() != " ")
         {
             textChanged = true;
